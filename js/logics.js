@@ -1,9 +1,5 @@
-// randomly return rock/paper/scissors
 function computerPlay() {
-    // get random number between 0 and 2
-    let randomNumber = Math.floor(Math.random() * 3);
-
-    // get corresponding string bases on the random number
+    const randomNumber = Math.floor(Math.random() * 3);
     let computerChoice;
     switch (randomNumber) {
         case 0:
@@ -18,79 +14,63 @@ function computerPlay() {
         default:
             alert('Oops, this isn\'t possible!');
     }
-
-    // return the choice
     return computerChoice;
 }
 
-// plays a single round of game
-function playRound(playerSelection, computerSelection) {
-    // make playerSelection case-insensitive
-    playerSelection =  playerSelection.toLowerCase();
+function playRound(e) {
+    const playerSelection = e.target.id;
+    const computerSelection = computerPlay();
 
-    // if same, there's a tie
-    // else if player = rock AND computer = scissors, player win
-    // else if player = paper AND computer = rock, player win
-    // else if player = scissors AND computer = paper, player win
-    // else if...
-    let result;
+    const playerScore = document.querySelector('#playerScore');
+    const computerScore = document.querySelector('#computerScore');
+
+    let score;
     if (playerSelection === computerSelection) {
-        result = 0;
+        return;
     } else if (
-        playerSelection === 'rock' && computerSelection === 'scissors' ||
-        playerSelection === 'paper' && computerSelection === 'rock' ||
-        playerSelection === 'scissors' && computerSelection === 'paper'
+            playerSelection === 'rock' && computerSelection === 'scissors' ||
+            playerSelection === 'paper' && computerSelection === 'rock' ||
+            playerSelection === 'scissors' && computerSelection === 'paper'
     ) {
-        result = 1;
-    } else if (
-        computerSelection === 'rock' && playerSelection === 'scissors' ||
-        computerSelection === 'paper' && playerSelection === 'rock' ||
-        computerSelection === 'scissors' && playerSelection === 'paper'
-    ) {
-        result = -1;
-    }
-    // What if use types something like 'banana'?
-
-    return result;
-}
-
-// play 5 rounds, keeps score and reports winner or loser
-function game() {
-    // loops for 5 times
-    // each time if someone wins, add one score to him/her
-    // if it is a tie, nobody gets score
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i=0; i<5; i++) {
-        let playerSelection = window.prompt('What\'s your choice?');
-        let computerSelection = computerPlay();
-        console.log(`Player chooses ${playerSelection}, computer chooses ${computerSelection}.`);
-
-        let result = playRound(playerSelection, computerSelection);
-        switch (result) {
-            case 1:
-                playerScore++;
-                console.log(`WIN!\nYour ${playerSelection} beats ${computerSelection}!`);
-                break;
-            case -1:
-                computerScore++;
-                console.log(`LOSE.\n${computerSelection} beats ${playerSelection}...`);
-                break;
-            default:
-                console.log('TIE.\nThere\'s a tie!');
+        score = Number(playerScore.textContent) + 1;
+        playerScore.textContent = score;
+        if (score === 5) {
+            announceWinner(0);
         }
-
-        console.log(`ROUND ${i+1} Player: ${playerScore} Computer: ${computerScore}\n`);
-    }
-
-    // compare the score and report (if any) the winner
-    if (playerScore > computerScore) {
-        console.log('Player wins!');
-    } else if (computerScore > playerScore) {
-        console.log('Computer wins.');
     } else {
-        console.log('There\'s a draw.');
+        score = Number(computerScore.textContent) + 1;
+        computerScore.textContent = score;
+        if (score === 5) {
+            announceWinner(1);
+        }
     }
 }
 
-game();
+function announceWinner(winner) {
+    const announcement = document.querySelector('#announcement');
+    announcement.textContent = (winner === 0) ?
+                               'You WIN! Congratulations!' :
+                               'You lose. Wanna play again?';
+
+    buttons.forEach((button) => {
+        button.disabled = true;
+    });
+    playAgainButton.classList.remove('hidden');
+}
+
+function playAgain() {
+    document.querySelector('#playerScore').textContent = '0';
+    document.querySelector('#computerScore').textContent = '0';
+
+    buttons.forEach((button) => {
+        button.disabled = false;
+    });
+}
+
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach((button) => {
+    button.addEventListener('click', playRound);
+});
+
+const playAgainButton = document.querySelector('.playAgainButton');
+playAgainButton.addEventListener('click', playAgain);
