@@ -65,6 +65,7 @@ function playAgain() {
     buttons.forEach((button) => {
         button.disabled = false;
     });
+    playAgainButton.classList.add('hidden');
 }
 
 const buttons = document.querySelectorAll('.btn');
