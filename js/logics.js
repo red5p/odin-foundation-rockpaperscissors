@@ -51,6 +51,7 @@ function announceWinner(winner) {
     announcement.textContent = (winner === 0) ?
                                'You WIN! Congratulations!' :
                                'You lose. Wanna play again?';
+    announcement.style.visibility = 'visible';
 
     buttons.forEach((button) => {
         button.disabled = true;
@@ -66,6 +67,8 @@ function playAgain() {
         button.disabled = false;
     });
     playAgainButton.classList.add('hidden');
+    const announcement = document.querySelector('#announcement');
+    announcement.style.visibility = 'hidden';
 }
 
 const buttons = document.querySelectorAll('.btn');
