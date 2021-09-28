@@ -23,19 +23,19 @@ function playRound(e) {
 
     const playerIcon = document.querySelector('#playerAnimation');
     if (playerSelection === 'rock') {
-        playerIcon.innerHTML = '<i class="far fa-hand-rock fa-5x"></i>';
+        playerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
     } else if (playerSelection === 'paper') {
-        playerIcon.innerHTML = '<i class="far fa-hand-paper fa-5x"></i>';
+        playerIcon.innerHTML = '<i class="far fa-hand-paper fa-7x"></i>';
     } else {
-        playerIcon.innerHTML = '<i class="far fa-hand-scissors fa-5x"></i>';
+        playerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
     }
     const computerIcon = document.querySelector('#computerAnimation');
     if (computerSelection === 'rock') {
-        computerIcon.innerHTML = '<i class="far fa-hand-rock fa-5x"></i>';
+        computerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
     } else if (computerSelection === 'paper') {
-        computerIcon.innerHTML = '<i class="far fa-hand-paper fa-5x"></i>';
+        computerIcon.innerHTML = '<i class="far fa-hand-paper fa-7x"></i>';
     } else {
-        computerIcon.innerHTML = '<i class="far fa-hand-scissors fa-5x"></i>';
+        computerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
     }
     
 
