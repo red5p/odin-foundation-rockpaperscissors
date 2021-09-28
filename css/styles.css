@@ -4,7 +4,6 @@
 
 body {
   margin: 0;
- 
 }
 
 #pageWrapper {
@@ -60,7 +59,7 @@ body {
   font-size: 60px;
 }
 
-#animation {
+#icon {
   display: flex;
   width: 70%;
   height: 200px;

@@ -21,7 +21,52 @@ function playRound(e) {
     const playerSelection = this.id;
     const computerSelection = computerPlay();
 
-    const playerIcon = document.querySelector('#playerAnimation');
+    changeIcon(playerSelection, computerSelection);
+    
+    const playerScore = document.querySelector('#playerScore');
+    const computerScore = document.querySelector('#computerScore');
+    let score;
+    if (playerSelection === computerSelection) {
+        return;
+    } else if (
+        playerSelection === 'rock' && computerSelection === 'scissors' ||
+        playerSelection === 'paper' && computerSelection === 'rock' ||
+        playerSelection === 'scissors' && computerSelection === 'paper'
+    ) {
+        score = Number(playerScore.textContent) + 1;
+        playerScore.textContent = score;
+        changeIconColor(0);
+        if (score === 5) {
+            announceWinner(0);
+        }
+    } else {
+        score = Number(computerScore.textContent) + 1;
+        changeIconColor(1);
+        computerScore.textContent = score;
+        if (score === 5) {
+            announceWinner(1);
+        }
+    }
+}
+
+function changeIconColor(winner) {
+    const playerIcon = document.querySelector('#playerIcon');
+    const computerIcon = document.querySelector('#computerIcon');
+    if (winner === 0) {
+        playerIcon.style.color = 'rgb(255, 196, 0)';
+        computerIcon.style.color = 'black';
+        document.querySelector('#scoreLeft').style.color = 'rgb(255, 196, 0)';
+        document.querySelector('#scoreRight').style.color = 'black';
+    } else {
+        playerIcon.style.color = 'black';
+        computerIcon.style.color = 'rgb(255, 196, 0)';
+        document.querySelector('#scoreLeft').style.color = 'black';
+        document.querySelector('#scoreRight').style.color = 'rgb(255, 196, 0)';
+    }
+}
+
+function changeIcon(playerSelection, computerSelection) {
+    const playerIcon = document.querySelector('#playerIcon');
     if (playerSelection === 'rock') {
         playerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
     } else if (playerSelection === 'paper') {
@@ -29,46 +74,13 @@ function playRound(e) {
     } else {
         playerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
     }
-    const computerIcon = document.querySelector('#computerAnimation');
+    const computerIcon = document.querySelector('#computerIcon');
     if (computerSelection === 'rock') {
         computerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
     } else if (computerSelection === 'paper') {
         computerIcon.innerHTML = '<i class="far fa-hand-paper fa-7x"></i>';
     } else {
         computerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
-    }
-    
-
-    const playerScore = document.querySelector('#playerScore');
-    const computerScore = document.querySelector('#computerScore');
-
-    let score;
-    if (playerSelection === computerSelection) {
-        return;
-    } else if (
-            playerSelection === 'rock' && computerSelection === 'scissors' ||
-            playerSelection === 'paper' && computerSelection === 'rock' ||
-            playerSelection === 'scissors' && computerSelection === 'paper'
-    ) {
-        score = Number(playerScore.textContent) + 1;
-        playerIcon.style.color = 'rgb(255, 196, 0)';
-        computerIcon.style.color = 'black';
-        document.querySelector('#scoreLeft').style.color = 'rgb(255, 196, 0)';
-        document.querySelector('#scoreRight').style.color = 'black';
-        playerScore.textContent = score;
-        if (score === 5) {
-            announceWinner(0);
-        }
-    } else {
-        score = Number(computerScore.textContent) + 1;
-        playerIcon.style.color = 'black';
-        computerIcon.style.color = 'rgb(255, 196, 0)';
-        document.querySelector('#scoreLeft').style.color = 'black';
-        document.querySelector('#scoreRight').style.color = 'rgb(255, 196, 0)';
-        computerScore.textContent = score;
-        if (score === 5) {
-            announceWinner(1);
-        }
     }
 }
 
@@ -100,6 +112,7 @@ function playAgain() {
     const announcement = document.querySelector('#announcement');
     announcement.style.visibility = 'hidden';
 }
+
 
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
