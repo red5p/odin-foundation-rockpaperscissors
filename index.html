@@ -6,27 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/11f27a57ef.js" crossorigin="anonymous"></script>
   <script src="js/logics.js" defer></script>
 </head>
 <body>
   <div id="pageWrapper">
     <div id="content">
+      <h1 id="heading">ROCK, PAPER & SCISSORS</h1>
       <div id="score">
-        YOU
-        <div id="playerScore">0</div>
+        <div id="scoreLeft">
+          <div id="playerScore">0</div>
+          YOU
+        </div>
         <div> : </div>
-        <div id="computerScore">0</div>
-        COMPUTER
+        <div id="scoreRight">
+          <div id="computerScore">0</div>
+          COMPUTER
+        </div>
+      </div>
+
+      <div id="animation">
+        <div id="playerAnimation">
+          <i class="far fa-hand-rock fa-5x"></i>
+        </div>
+        <div id="computerAnimation">
+          <i class="fas fa-hand-rock fa-5x"></i>
+        </div>
       </div>
 
       <div id="buttons">
-        <button class="btn" id="rock">ROCK</button>
-        <button class="btn" id="paper">PAPER</button>
-        <button class="btn" id="scissors">SCISSORS</button>
+        <button class="btn" id="rock">
+          <i class="fas fa-hand-rock fa-3x"></i>
+        </button>
+        <button class="btn" id="paper">
+          <i class="far fa-hand-paper fa-3x"></i>
+        </button>
+        <button class="btn" id="scissors">
+          <i class="far fa-hand-scissors fa-3x fa-rotate-90"></i>
+        </button>
       </div>
 
       <p id="announcement" class="hidden"></p>
-      <button class="playAgainButton hidden">Play Again!</button>   
+      <button id="playAgainButton" class="hidden">Play again!</button>   
     </div>   
   </div>
 </body>
