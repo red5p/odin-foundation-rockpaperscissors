@@ -67,20 +67,26 @@ function changeIconColor(winner) {
 
 function changeIcon(playerSelection, computerSelection) {
     const playerIcon = document.querySelector('#playerIcon');
-    if (playerSelection === 'rock') {
-        playerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
-    } else if (playerSelection === 'paper') {
-        playerIcon.innerHTML = '<i class="far fa-hand-paper fa-7x"></i>';
-    } else {
-        playerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
-    }
     const computerIcon = document.querySelector('#computerIcon');
-    if (computerSelection === 'rock') {
-        computerIcon.innerHTML = '<i class="far fa-hand-rock fa-7x"></i>';
-    } else if (computerSelection === 'paper') {
-        computerIcon.innerHTML = '<i class="far fa-hand-paper fa-7x"></i>';
+    if (playerSelection === computerSelection) {
+        playerIcon.style.color = 'black';
+        computerIcon.style.color = 'black';
+        document.querySelector('#scoreLeft').style.color = 'black';
+        document.querySelector('#scoreRight').style.color = 'black';
+    }
+    if (playerSelection === 'rock') {
+        playerIcon.innerHTML = '<i class="fas fa-hand-rock fa-7x"></i>';
+    } else if (playerSelection === 'paper') {
+        playerIcon.innerHTML = '<i class="fas fa-hand-paper fa-7x"></i>';
     } else {
-        computerIcon.innerHTML = '<i class="far fa-hand-scissors fa-7x"></i>';
+        playerIcon.innerHTML = '<i class="fas fa-hand-scissors fa-7x"></i>';
+    }
+    if (computerSelection === 'rock') {
+        computerIcon.innerHTML = '<i class="fas fa-hand-rock fa-7x"></i>';
+    } else if (computerSelection === 'paper') {
+        computerIcon.innerHTML = '<i class="fas fa-hand-paper fa-7x"></i>';
+    } else {
+        computerIcon.innerHTML = '<i class="fas fa-hand-scissors fa-7x"></i>';
     }
 }
 
@@ -105,6 +111,8 @@ function playAgain() {
     document.querySelector('#playerScore').textContent = '0';
     document.querySelector('#computerScore').textContent = '0';
 
+    resetIcon();
+
     buttons.forEach((button) => {
         button.disabled = false;
     });
@@ -113,6 +121,17 @@ function playAgain() {
     announcement.style.visibility = 'hidden';
 }
 
+function resetIcon() {
+    const playerIcon = document.querySelector('#playerIcon');
+    const computerIcon = document.querySelector('#computerIcon');
+
+    computerIcon.innerHTML = '<i class="fas fa-question fa-7x"></i>';
+    playerIcon.innerHTML = '<i class="fas fa-question fa-7x"></i>';
+    playerIcon.style.color = 'black';
+    computerIcon.style.color = 'black';
+    document.querySelector('#scoreLeft').style.color = 'black';
+    document.querySelector('#scoreRight').style.color = 'black';
+}
 
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
