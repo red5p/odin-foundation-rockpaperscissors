@@ -8,3 +8,4 @@ Live preview: https://red5p.github.io/odin-foundation-rockpaperscissors/
 * Make javascript code less messy.
 * Give variables more meaningful names.
 * Use class and id in a better way.
+* And consider difference between browsers default styles. Add reset stylesheet next time?
