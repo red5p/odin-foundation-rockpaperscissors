@@ -15,7 +15,7 @@ body {
 }
 
 #content {
-  width: 850px;
+  width: 900px;
   height: 900px;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ body {
   cursor: pointer;
   border: black 4px solid;
   color:black;
-  background-color: transparent;
+  background-color: white;
   transition: 0.2s;
 }
 
@@ -104,7 +104,7 @@ body {
   padding: 10px 25px;
   border-radius: 20px;
   border: black 4px solid;
-  background-color: transparent;
+  background-color: white;
   cursor: pointer;
   box-shadow: rgb(255, 196, 0) 0px 10px 0px;
   transition: 0.2s;
