@@ -23,16 +23,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 55px;
   padding: 30px;
   background-color: white;
-
+  font-family: 'Righteous', cursive;
   border: 20px rgb(230, 230, 230) double;
 }
 
 #header {
   margin: 0;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #scoreBoard {
@@ -55,13 +55,12 @@ body {
 
 #playerScore,
 #computerScore {
-  font-size: 60px;
+  font-size: 80px;
 }
 
 #icon {
   display: flex;
   width: 70%;
-  height: 200px;
   justify-content: space-around;
   align-items: center;
 }
@@ -95,6 +94,7 @@ body {
 #announcement {
   font-size: 30px;
   font-weight: bold;
+  letter-spacing: 0.1em;
 }
 
 #playAgainButton {
@@ -108,6 +108,7 @@ body {
   box-shadow: rgb(255, 196, 0) 0px 10px 0px;
   transition: 0.2s;
   font-weight: bold;
+  font-family: 'Righteous', cursive;
 }
 
 #playAgainButton:hover {
