@@ -10,42 +10,40 @@
   <script src="js/logics.js" defer></script>
 </head>
 <body>
-  <div id="pageWrapper">
-    <div id="content">
-      <h1 id="heading">ROCK, PAPER <span class="yellow">&</span> SCISSORS</h1>
-      <div id="score">
-        <div id="scoreLeft">
-          <div id="playerScore">0</div>
-          YOU
-        </div>
-        <div> : </div>
-        <div id="scoreRight">
-          <div id="computerScore">0</div>
-          COMPUTER
-        </div>
+  <div id="content">
+    <h1 id="header">ROCK, PAPER <span class="yellow">&</span> SCISSORS</h1>
+    <div id="scoreBoard">
+      <div id="scoreLeft">
+        <div id="playerScore">0</div>
+        YOU
       </div>
-      <div id="icon">
-        <div id="playerIcon">
-          <i class="fas fa-question fa-7x"></i>
-        </div>
-        <div id="computerIcon">
-          <i class="fas fa-question fa-7x"></i>
-        </div>
+      <div> : </div>
+      <div id="scoreRight">
+        <div id="computerScore">0</div>
+        COMPUTER
       </div>
-      <div id="buttons">
-        <button class="btn" id="rock">
-          <i class="far fa-hand-rock fa-3x"></i>
-        </button>
-        <button class="btn" id="paper">
-          <i class="far fa-hand-paper fa-3x"></i>
-        </button>
-        <button class="btn" id="scissors">
-          <i class="far fa-hand-scissors fa-3x fa-rotate-90"></i>
-        </button>
+    </div>
+    <div id="icon">
+      <div id="playerIcon">
+        <i class="fas fa-question fa-7x"></i>
       </div>
-      <p id="announcement" class="hidden"></p>
-      <button id="playAgainButton" class="hidden">Play again!</button>   
-    </div>   
-  </div>
+      <div id="computerIcon">
+        <i class="fas fa-question fa-7x"></i>
+      </div>
+    </div>
+    <div id="buttons">
+      <button class="btn" id="rock">
+        <i class="far fa-hand-rock fa-3x"></i>
+      </button>
+      <button class="btn" id="paper">
+        <i class="far fa-hand-paper fa-3x"></i>
+      </button>
+      <button class="btn" id="scissors">
+        <i class="far fa-hand-scissors fa-3x fa-rotate-90"></i>
+      </button>
+    </div>
+    <p id="announcement" class="hidden"></p>
+    <button id="playAgainButton" class="hidden">Play again!</button>   
+  </div>   
 </body>
 </html>

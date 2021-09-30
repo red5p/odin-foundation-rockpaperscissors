@@ -10,9 +10,6 @@ html {
 
 body {
   margin: 0;
-}
-
-#pageWrapper {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -33,16 +30,12 @@ body {
   border: 20px rgb(230, 230, 230) double;
 }
 
-#heading {
+#header {
   margin: 0;
   font-size: 50px;
 }
 
-.yellow {
-  color: rgb(255, 196, 0);
-}
-
-#score {
+#scoreBoard {
   width: 75%;
   display: flex;
   justify-content: space-evenly;
@@ -127,4 +120,8 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+.yellow {
+  color: rgb(255, 196, 0);
 }

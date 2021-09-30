@@ -1,3 +1,24 @@
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+
+const playerIcon = document.querySelector('#playerIcon');
+const computerIcon = document.querySelector('#computerIcon');
+
+const announcement = document.querySelector('#announcement');
+
+let currentPlayerScore = 0;
+let currentComputerScore = 0;
+
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach((button) => {
+    button.addEventListener('click', playRound);
+});
+
+const playAgainButton = document.querySelector('#playAgainButton');
+playAgainButton.addEventListener('click', playAgain);
+
+
+// make a random choice for the computer
 function computerPlay() {
     const randomNumber = Math.floor(Math.random() * 3);
     let computerChoice;
@@ -17,63 +38,38 @@ function computerPlay() {
     return computerChoice;
 }
 
-function playRound(e) {
-    const playerSelection = this.id;
+function playRound() {
+    const playerSelection = this.id; // get id of the button being clicked
     const computerSelection = computerPlay();
 
     changeIcon(playerSelection, computerSelection);
-    
-    const playerScore = document.querySelector('#playerScore');
-    const computerScore = document.querySelector('#computerScore');
-    let score;
+
     if (playerSelection === computerSelection) {
+        changeIconColor('neither');
         return;
     } else if (
-        playerSelection === 'rock' && computerSelection === 'scissors' ||
-        playerSelection === 'paper' && computerSelection === 'rock' ||
-        playerSelection === 'scissors' && computerSelection === 'paper'
+            playerSelection === 'rock' && computerSelection === 'scissors' ||
+            playerSelection === 'paper' && computerSelection === 'rock' ||
+            playerSelection === 'scissors' && computerSelection === 'paper'
     ) {
-        score = Number(playerScore.textContent) + 1;
-        playerScore.textContent = score;
-        changeIconColor(0);
-        if (score === 5) {
-            announceWinner(0);
-        }
+        currentPlayerScore++;
+        playerScore.textContent = currentPlayerScore;
+        changeIconColor('player');
     } else {
-        score = Number(computerScore.textContent) + 1;
-        changeIconColor(1);
-        computerScore.textContent = score;
-        if (score === 5) {
-            announceWinner(1);
-        }
+        currentComputerScore++;
+        computerScore.textContent = currentComputerScore;
+        changeIconColor('computer');
+    }
+
+    if (currentPlayerScore === 5) {
+        announceWinner('player');
+    } else if (currentComputerScore === 5) {
+        announceWinner('computer');
     }
 }
 
-function changeIconColor(winner) {
-    const playerIcon = document.querySelector('#playerIcon');
-    const computerIcon = document.querySelector('#computerIcon');
-    if (winner === 0) {
-        playerIcon.style.color = 'rgb(255, 196, 0)';
-        computerIcon.style.color = 'black';
-        document.querySelector('#scoreLeft').style.color = 'rgb(255, 196, 0)';
-        document.querySelector('#scoreRight').style.color = 'black';
-    } else {
-        playerIcon.style.color = 'black';
-        computerIcon.style.color = 'rgb(255, 196, 0)';
-        document.querySelector('#scoreLeft').style.color = 'black';
-        document.querySelector('#scoreRight').style.color = 'rgb(255, 196, 0)';
-    }
-}
-
+// change the icon according to the choices made by the player and computer
 function changeIcon(playerSelection, computerSelection) {
-    const playerIcon = document.querySelector('#playerIcon');
-    const computerIcon = document.querySelector('#computerIcon');
-    if (playerSelection === computerSelection) {
-        playerIcon.style.color = 'black';
-        computerIcon.style.color = 'black';
-        document.querySelector('#scoreLeft').style.color = 'black';
-        document.querySelector('#scoreRight').style.color = 'black';
-    }
     if (playerSelection === 'rock') {
         playerIcon.innerHTML = '<i class="fas fa-hand-rock fa-7x"></i>';
     } else if (playerSelection === 'paper') {
@@ -81,6 +77,7 @@ function changeIcon(playerSelection, computerSelection) {
     } else {
         playerIcon.innerHTML = '<i class="fas fa-hand-scissors fa-7x"></i>';
     }
+
     if (computerSelection === 'rock') {
         computerIcon.innerHTML = '<i class="fas fa-hand-rock fa-7x"></i>';
     } else if (computerSelection === 'paper') {
@@ -90,53 +87,68 @@ function changeIcon(playerSelection, computerSelection) {
     }
 }
 
+// change the color of the text and icons according to who wins
+function changeIconColor(winner) {
+    if (winner === 'neither') {
+        resetColor();
+    } else if (winner === 'player') {
+        playerIcon.classList.add('yellow');
+        computerIcon.classList.remove('yellow');
+        document.querySelector('#scoreLeft').classList.add('yellow');
+        document.querySelector('#scoreRight').classList.remove('yellow');
+    } else {
+        playerIcon.classList.remove('yellow');
+        computerIcon.classList.add('yellow');
+        document.querySelector('#scoreLeft').classList.remove('yellow');
+        document.querySelector('#scoreRight').classList.add('yellow');
+    }
+}
+
+
 function announceWinner(winner) {
-    const announcement = document.querySelector('#announcement');
-    if (winner === 0) {
+    if (winner === 'player') {
         announcement.textContent = 'You WIN! Congratulations!';
-        announcement.style.color = 'rgb(255, 196, 0)';
+        announcement.classList.add('yellow');
     } else {
         announcement.textContent = 'You lose. Wanna play again?';
-        announcement.style.color = 'black';
+        announcement.classList.remove('yellow');
     }
-    announcement.style.visibility = 'visible';
-
     buttons.forEach((button) => {
         button.disabled = true;
     });
+    announcement.classList.remove('hidden');
     playAgainButton.classList.remove('hidden');
 }
 
 function playAgain() {
-    document.querySelector('#playerScore').textContent = '0';
-    document.querySelector('#computerScore').textContent = '0';
-
+    resetScore();
     resetIcon();
-
     buttons.forEach((button) => {
         button.disabled = false;
     });
     playAgainButton.classList.add('hidden');
-    const announcement = document.querySelector('#announcement');
-    announcement.style.visibility = 'hidden';
+    announcement.classList.add('hidden');
 }
 
+// reset scores when a new game is started
+function resetScore() {
+    currentPlayerScore = 0;
+    currentComputerScore = 0;
+    playerScore.textContent = currentPlayerScore;
+    computerScore.textContent = currentComputerScore;
+}
+
+// change icons to the default icons when a new game is started
 function resetIcon() {
-    const playerIcon = document.querySelector('#playerIcon');
-    const computerIcon = document.querySelector('#computerIcon');
-
-    computerIcon.innerHTML = '<i class="fas fa-question fa-7x"></i>';
     playerIcon.innerHTML = '<i class="fas fa-question fa-7x"></i>';
-    playerIcon.style.color = 'black';
-    computerIcon.style.color = 'black';
-    document.querySelector('#scoreLeft').style.color = 'black';
-    document.querySelector('#scoreRight').style.color = 'black';
+    computerIcon.innerHTML = '<i class="fas fa-question fa-7x"></i>';
+    resetColor();
 }
 
-const buttons = document.querySelectorAll('.btn');
-buttons.forEach((button) => {
-    button.addEventListener('click', playRound);
-});
-
-const playAgainButton = document.querySelector('#playAgainButton');
-playAgainButton.addEventListener('click', playAgain);
+// change icon and scoreBoard color to black(can be used when there's a tie/a new game)
+function resetColor() {
+    playerIcon.classList.remove('yellow');;
+    computerIcon.classList.remove('yellow');
+    document.querySelector('#scoreLeft').classList.remove('yellow');
+    document.querySelector('#scoreRight').classList.remove('yellow');
+}
