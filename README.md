@@ -6,5 +6,5 @@ Live preview: https://red5p.github.io/odin-foundation-rockpaperscissors/
 
 ### Things need to be improved next time:
 * Make a plan before start to write functions.
-* Give variables more meaningful names(header, main, footer, etc.).
-* Use class and id in a better way.
+* Give variables more meaningful names.
+* Use html tags, class and id in a better way.
